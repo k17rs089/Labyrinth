@@ -14,6 +14,7 @@
 
       var life = 3;
       var money = 0; 
+      var flag = true;
 
         function left(){
         var ran = Math.floor(Math.random() * 3);
@@ -57,6 +58,24 @@
         }
       }
 
+       $(function() {
+        $('#hidari').click(function() {
+          left();
+        });
+
+        $('#tyokusin').click(function() {
+          straight();
+        });
+
+        $('#migi').click(function() {
+          right();
+        });
+
+        $('#newgame').click(function() {
+          newgame();
+        });
+      });
+
       function nanimonakatta() {
         $("#result").html("何も無かった・・");
       }
@@ -75,27 +94,21 @@
           $("#okane").html("お金："+money);
       }
 
-      $(function() {
-        $('#hidari').click(function() {
-          left();
-        });
-
-        $('#tyokusin').click(function() {
-          straight();
-        });
-
-        $('#migi').click(function() {
-          right();
-        });
-
-        $('#newgame').click(function() {
-          newgame();
-        });
-      });
+      function gameover() {
+        try {
+          if(flag) {
+            throw new Error('終了します');
+          }
+          alert('実行されないコード');
+        } catch(e) {
+          alert(e.message);
+          $("#gameover").html("GAME OVER");
+        }
+      }  
 
       function newgame() {      
-        window.location.reload();              
-      }
+        window.location.reload();    
+      }  
  
     </script>
 </head>
@@ -107,6 +120,7 @@
     <button id="migi"> 右へ </button>
     <button id="newgame"> やり直す </button>
     <div id="result">  </div>
+    <div id="gameover"> </div>
     <br></br>
     <div id="tairyoku"> HP： 3</div>
     <div id="okane"> お金：0</div>
