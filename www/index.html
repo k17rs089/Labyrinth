@@ -1,6 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="components/loader.js"></script>
+    <script src="keys.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src = "keys.js"></script>
+    <script>
+
+      var life = 3;
+      var money = 0; 
+
+        function left(){
+        var ran = Math.floor(Math.random() * 3);
+        if(ran == 0) {
+          nanimonakatta();
+        } else if(ran == 1) {
+          tekitosougu();
+        } else {
+          otakarahakken();
+        }          
+        if(life <= 0){
+          gameover();
+        }
+      }
+
+      function straight(){
+        var ran = Math.floor(Math.random() * 3);
+        if(ran == 0) {
+          nanimonakatta();
+        } else if(ran == 1) {
+          tekitosougu();
+        } else {
+          otakarahakken();
+        }
+        if(life <= 0){
+          gameover();
+        }          
+      }
+
+      function right(){
+        var ran = Math.floor(Math.random() * 3);
+        if(ran == 0) {
+          nanimonakatta();
+        } else if(ran == 1) {
+          tekitosougu();
+        } else {
+          otakarahakken();
+        }          
+        if(life <= 0){
+          gameover();
+        }
+      }
+
+      function nanimonakatta() {
+        $("#result").html("何も無かった・・");
+      }
+
+      function tekitosougu() {
+        $("#result").html("敵と遭遇！");
+          life--;
+          String(life);
+          $("#tairyoku").html("HP："+life);
+      }
+      
+      function otakarahakken() {
+        $("#result").html("お宝発見！");
+          money+=100;
+          String(money);
+          $("#okane").html("お金："+money);
+      }
+
+      $(function() {
+        $('#hidari').click(function() {
+          left();
+        });
+
+        $('#tyokusin').click(function() {
+          straight();
+        });
+
+        $('#migi').click(function() {
+          right();
+        });
+
+        $('#newgame').click(function() {
+          newgame();
+        });
+      });
+
+      function newgame() {      
+        window.location.reload();              
+      }
+ 
+    </script>
+</head>
+<body>
     <h1> 迷宮 </h1>
     <div id="dokohe"> どこへ進む？ </div>
     <button id="hidari"> 左へ </button>
     <button id="tyokusin"> 直進 </button>
     <button id="migi"> 右へ </button>
     <button id="newgame"> やり直す </button>
+    <div id="result">  </div>
+    <br></br>
+    <div id="tairyoku"> HP： 3</div>
+    <div id="okane"> お金：0</div>
+</body>
+</html>
