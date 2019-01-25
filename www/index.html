@@ -15,8 +15,11 @@
       var life = 3;
       var money = 0; 
       var flag = true;
+      var ncmb = new NCMB(appKey, clientKey); 
+      var Labyrinth = ncmb.DataStore("Labyrinth");
+      var labyrinth = new Labyrinth();
 
-        function left(){
+      function left(){
         var ran = Math.floor(Math.random() * 3);
         if(ran == 0) {
           nanimonakatta();
@@ -111,6 +114,7 @@
       }  
 
       function newgame() {      
+        labyrinth.set("money",money).save();
         window.location.reload();    
       }  
  
